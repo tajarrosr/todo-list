@@ -1,0 +1,111 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 20px;
+  margin: 0;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.todo-input,
+.js-duedate-input {
+  width: calc(100% - 20px);
+  padding: 12px;
+  font-size: 16px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.todo-input {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.js-duedate-input {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+button {
+  background: linear-gradient(135deg, #ff4d4d, #ff944d);
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+  width: 100%;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 77, 77, 0.4);
+}
+
+.js-todoList {
+  margin-top: 20px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.todo-item button {
+  background: linear-gradient(135deg, #ff4141, #ff7373);
+  font-size: 14px;
+  padding: 8px;
+  width: auto;
+}
+
+.todo-item button:hover {
+  background: linear-gradient(135deg, #d60000, #ff5252);
+  transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .todo-item {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}

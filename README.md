@@ -1,4 +1,4 @@
-# 📝 To-Do List (Responsive)s
+# 📝 To-Do List (Responsive)
 
 ## 📌 Description
 A to-do list application built with HTML, CSS, and JavaScript. Users can add tasks, set date to finish the task and delete them. Fully responsive design that works on all devices.

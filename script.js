@@ -1,50 +1,60 @@
 let todoList = JSON.parse(localStorage.getItem("todolist")) || [];
 
-function reusetodoList() {
-  let todoListHTML = "";
+const todoInput = document.querySelector(".todo-input");
+const dueDateInput = document.querySelector(".js-duedate-input");
+const todoContainer = document.querySelector(".js-todoList");
+const addButton = document.querySelector("button");
+
+const rendertodoList = () => {
+    todoContainer.innerHTML = "";
 
   todoList.forEach((todo, index) => {
     const { name, dueDate } = todo;
     const formatDate = new Date(dueDate).toLocaleDateString();
 
-    const html = `
-    <div class="todo-item">
+    const item = document.createElement("div")
+    item.className = "todo-item";
+    
+    item.innerHTML = `
     <span>${name} - Due: ${formatDate}</span>
-    <button onclick="deletetodo(${index})">Delete</button>
-    </div>
+    <button class="delete-btn" data-index="${index}">Delete</button>
     `;
-    todoListHTML += html;
+    todoContainer.appendChild(item);
   });
 
-  document.querySelector(".js-todoList").innerHTML = todoListHTML;
-}
 
-function addTodo() {
-  const name = document.querySelector(".todo-input").value;
-  const dueDate = document.querySelector(".js-duedate-input").value;
+  document.querySelectorAll(".delete-btn").forEach(button => {
+    button.addEventListener("click", () => deleteTodo(button.dataset.index));
+  });
+};
 
-  if (name && dueDate) {
-    todoList.push({ name, dueDate });
+const addTodo = () => {
+  const name = todoInput.value.trim();
+  const dueDate = dueDateInput.value;
 
-    document.querySelector(".todo-input").value = "";
-    document.querySelector(".js-duedate-input").value = "";
-
-    updatelocalStorage();
-    reusetodoList();
-  } else {
+  if (!name || !dueDate) {
     alert("Please fill in both fields.");
+    return;
   }
-}
 
-function deletetodo(index) {
-  todoList.splice(index, 1);
-
+  todoList.push({name, dueDate});
   updatelocalStorage();
-  reusetodoList();
+
+  todoInput.value = "";
+  dueDateInput.value = "";
+  rendertodoList();
 }
 
-function updatelocalStorage() {
+const deleteTodo = (index) => {
+  todoList.splice(index, 1);
+  updatelocalStorage();
+  rendertodoList();
+}
+
+const updatelocalStorage = () => {
   localStorage.setItem("todolist", JSON.stringify(todoList));
 }
 
-reusetodoList();
+addButton.addEventListener("click", addTodo);
+
+rendertodoList();
